@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package jsonpos places encoding/json's errors in the document they come
 // from, by line and column, for messages about hand-edited files.
 package jsonpos

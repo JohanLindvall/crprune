@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package rules defines the declarative JSON rule format used to decide
 // which manifests to keep or delete, and its compiled, regex-checked form.
 package rules

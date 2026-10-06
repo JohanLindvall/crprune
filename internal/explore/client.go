@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package explore implements the statistics explorer for snapshots and live
 // registries. Registry changes always go through a reviewed pruning plan.
 package explore

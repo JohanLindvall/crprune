@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package registry is the registry-neutral side of registry access: the
 // manifest model, parallel manifest download with digest verification and
 // on-disk caching, and deletion, on top of a Backend speaking one registry's

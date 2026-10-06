@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package cancellation distinguishes an intentional cancellation from failures
 // that happen alongside it.
 package cancellation

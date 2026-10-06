@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Command crprune prunes manifests and repositories of Azure Container
 // Registry and GitHub Container Registry using declarative JSON rules.
 package main

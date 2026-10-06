@@ -1,7 +1,11 @@
+// SPDX-License-Identifier: MIT
+
 package pruner
 
 import (
 	"errors"
+	"math"
+	"os"
 	"slices"
 	"strings"
 	"testing"
@@ -237,5 +241,31 @@ func TestWriteStatsTableReportsWriteErrors(t *testing.T) {
 	boom := errors.New("boom")
 	if err := WriteStatsTable(failingWriter{boom}, readTestStats(t), 0); !errors.Is(err, boom) {
 		t.Errorf("error = %v, want the write failure", err)
+	}
+}
+
+// TestSampleStatistics keeps examples/sample-stats.json, the README's demo
+// without registry credentials, readable by top and explore, and its synthetic
+// entries consistent with what statistics would write.
+func TestSampleStatistics(t *testing.T) {
+	f, err := os.Open("../../examples/sample-stats.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	stats, err := ReadStats(f)
+	_ = f.Close()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(stats) == 0 {
+		t.Fatal("the sample holds no repositories")
+	}
+	for _, s := range stats {
+		if s.Count != s.Tagged+s.Untagged || s.Unique > s.Total || s.Running > s.Count || s.Oldest.After(s.Newest) {
+			t.Errorf("%s: inconsistent entry %+v", s.Name, s)
+		}
+		if shared := 1 - float64(s.Unique)/float64(s.Total); math.Abs(s.Shared-shared) > 1e-3 {
+			t.Errorf("%s: shared = %v, want 1 - unique/total = %.4f", s.Name, s.Shared, shared)
+		}
 	}
 }

@@ -21,6 +21,7 @@ jobs:
           go-version: '1.27.x'
           cache: true
       - run: make vet
+      - run: make license-check
       - name: Vulnerability check
         run: make vuln
       - name: Lint

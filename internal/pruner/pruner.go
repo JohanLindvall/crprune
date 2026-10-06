@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package pruner applies compiled rules to a container registry, deleting
 // manifests and repositories that no rule keeps.
 package pruner

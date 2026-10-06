@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 package main
 
 // nearCommand avoids unrelated suggestions: the CLI library returns its best

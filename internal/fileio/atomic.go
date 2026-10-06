@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package fileio writes complete file snapshots without exposing partial data.
 package fileio
 

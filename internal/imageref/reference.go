@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package imageref validates container repository names and image references.
 package imageref
 

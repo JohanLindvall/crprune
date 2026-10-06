@@ -1,4 +1,5 @@
 #!/bin/sh
+# SPDX-License-Identifier: MIT
 set -eu
 test_dir=$(mktemp -d)
 trap 'rm -rf "$test_dir"' EXIT

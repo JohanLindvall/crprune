@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package registrytest provides an in-memory registry.Backend for tests.
 package registrytest
 

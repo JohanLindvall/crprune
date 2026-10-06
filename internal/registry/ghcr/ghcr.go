@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package ghcr implements registry.Backend for GitHub Container Registry.
 //
 // ghcr.io's registry API serves manifest and blob content but can neither list

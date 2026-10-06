@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 package registry_test
 
 import (

@@ -1,4 +1,5 @@
 #!/bin/sh
+# SPDX-License-Identifier: MIT
 # Emit a complete image inventory, or fail without emitting a partial one.
 set -eu
 

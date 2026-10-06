@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 package rules
 
 // RepositoryMatcher finds the first matching rule without rescanning a

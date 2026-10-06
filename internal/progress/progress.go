@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package progress carries optional batch progress without coupling registry
 // operations to a terminal. Updates are cheap, synchronous and concurrency safe.
 package progress

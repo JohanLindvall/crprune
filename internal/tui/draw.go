@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package tui provides the drawing and terminal lifecycle shared by the batch
 // dashboard and the statistics explorer.
 package tui

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package acr implements registry.Backend for Azure Container Registry, on top
 // of the azcontainerregistry data-plane client.
 package acr

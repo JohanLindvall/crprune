@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // Package presets provides the example rules shipped with crprune.
 package presets
 

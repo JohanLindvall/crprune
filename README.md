@@ -1,6 +1,28 @@
 # crprune
 
-A Go tool that cleans up Azure Container Registry (ACR) and GitHub Container Registry (GHCR, `ghcr.io`) with declarative JSON rules. It prunes manifests by tag pattern, age, architecture and orphan status, and deletes entire repositories that become empty or match bulk-delete criteria.
+[![CI](https://github.com/JohanLindvall/crprune/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/JohanLindvall/crprune/actions/workflows/ci.yml?query=branch%3Amain)
+[![Release](https://img.shields.io/github/v/release/JohanLindvall/crprune?sort=semver)](https://github.com/JohanLindvall/crprune/releases/latest)
+[![License: MIT](https://img.shields.io/github/license/JohanLindvall/crprune)](LICENSE)
+
+crprune deletes old images from Azure Container Registry (ACR) and GitHub Container Registry (`ghcr.io`) by declarative JSON retention rules, without breaking the images it keeps. The platform images of a multi-arch index, [OCI 1.1](https://github.com/opencontainers/image-spec/blob/v1.1.0/manifest.md) referrers and [cosign](https://github.com/sigstore/cosign) signatures stay with their image; ACR-locked images, and images running in Kubernetes when given an inventory, are kept; every repository is listed again right before anything in it is deleted; and `prune` only previews until you pass `--dry-run=false`.
+
+```sh
+# Install the latest release (Linux amd64 or arm64) into ~/.local/bin
+curl -fsSL https://github.com/JohanLindvall/crprune/releases/latest/download/download.sh | sh -s -- ~/.local/bin
+
+# Delete pull-request images older than two weeks, in every repository: preview, then delete
+echo '[{"repo": ".+", "tagged": [{"tag": "^pr-", "match_older": "14d", "keep": false}]}]' > rules.json
+crprune -r myregistry prune --in rules.json
+crprune -r myregistry prune --in rules.json --dry-run=false
+```
+
+No registry at hand? Browse synthetic statistics in the interactive explorer, without credentials:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/JohanLindvall/crprune/main/examples/sample-stats.json | crprune explore
+```
+
+Rules match repositories by regex, and manifests by tag pattern, age, rank (the newest N), platform and digest; they can also delete orphaned manifests and whole repositories (see [Rule File Format](#rule-file-format)). [Authentication](#authentication) covers the credentials each registry needs.
 
 `--registry` chooses the registry: an ACR registry name (`myreg`) or login server (`myreg.azurecr.io`, or `myreg.azurecr.cn` / `myreg.azurecr.us` in Azure's sovereign clouds, optionally prefixed with `https://`), or `ghcr.io/<owner>` for the container packages of a GitHub user or organization. Other hosts are refused (see [Azure Container Registry](#azure-container-registry)).
 
@@ -514,6 +536,7 @@ make test        # Go tests plus the mocked script tests (the inventory tests re
 make test-race   # Go race detector plus the script tests
 make coverage    # race-enabled coverage.out and function coverage
 make vet
+make license-check  # every Go and shell source has an SPDX license identifier
 make lint        # pinned golangci-lint, installed into ./bin on first use
 make vuln        # vulnerability scan, built with the active Go toolchain
 make dist-all    # Linux amd64/arm64 archives and checksums
@@ -550,6 +573,19 @@ Every CI run keeps the `make dist-all` archives and checksums of its commit as a
 
 crprune adds declarative retention rules, dependency-aware cleanup, and support for both ACR and GHCR.
 
+## Star history
+
+<a href="https://www.star-history.com/#johanlindvall/crprune&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=johanlindvall/crprune&type=Date&theme=dark">
+    <img alt="Star history of crprune" src="https://api.star-history.com/svg?repos=johanlindvall/crprune&type=Date">
+  </picture>
+</a>
+
+## Security
+
+Report vulnerabilities privately, as described in [SECURITY.md](SECURITY.md).
+
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). Every source file carries an `SPDX-License-Identifier: MIT` line.

@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: If you use crprune in your work, please cite it as below.
+type: software
+title: crprune
+abstract: >-
+  crprune deletes old images from Azure Container Registry and GitHub
+  Container Registry (ghcr.io) by declarative JSON retention rules, without
+  breaking the images it keeps: multi-platform images, OCI referrers and
+  cosign signatures stay with the image they belong to.
+authors:
+  - given-names: Johan
+    family-names: Lindvall
+repository-code: https://github.com/JohanLindvall/crprune
+url: https://github.com/JohanLindvall/crprune
+license: MIT
+keywords:
+  - container registry
+  - Azure Container Registry
+  - GitHub Container Registry
+  - OCI
+  - retention policy
+  - cleanup

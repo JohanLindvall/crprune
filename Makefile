@@ -15,7 +15,7 @@ PLATFORMS := linux/amd64 linux/arm64
 GOLANGCI_LINT_VERSION := v2.14.0
 GOLANGCI_LINT         := $(CURDIR)/bin/golangci-lint-$(GOLANGCI_LINT_VERSION)
 
-.PHONY: all build test test-race test-scripts coverage vet lint vuln clean dist-all
+.PHONY: all build test test-race test-scripts coverage vet license-check lint vuln clean dist-all
 
 all: build
 
@@ -40,6 +40,11 @@ coverage:
 
 vet:
 	go vet ./...
+
+# Every Go and shell source starts with a one-line SPDX license identifier.
+license-check:
+	@missing=$$(git ls-files '*.go' '*.sh' | xargs grep -L 'SPDX-License-Identifier: MIT'); \
+	if [ -n "$$missing" ]; then echo "missing SPDX-License-Identifier:" $$missing >&2; exit 1; fi
 
 vuln:
 	go run golang.org/x/vuln/cmd/govulncheck@latest ./...

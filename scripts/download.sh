@@ -1,4 +1,5 @@
 #!/bin/sh
+# SPDX-License-Identifier: MIT
 # Install the crprune binary for this machine from a GitHub release: resolve
 # the release, verify its archive against the release's checksums, and replace
 # DIR/crprune atomically. Messages go to stderr; the installed path to stdout.
