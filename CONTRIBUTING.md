@@ -10,7 +10,7 @@ issue. Please follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Set up a checkout
 
-Use Go 1.26 or later (the minimum is declared in [go.mod](go.mod)), Git, GNU Make,
+Use Go 1.27.3 or later (the minimum is declared in [go.mod](go.mod)), Git, GNU Make,
 and `jq`. The full script suite expects a Linux environment with standard shell
 utilities, including `tar`, `gzip`, and `sha256sum`; Linux or WSL is the simplest
 way to match CI. The Go tests themselves use in-memory registries and HTTP test
@@ -143,8 +143,8 @@ preview.
 
 ## CI and releases
 
-CI runs on pull requests and pushes. It checks the minimum Go version from
-`go.mod` as well as Go 1.27. The main job runs `make check`, vulnerability and lint
+CI runs on pull requests and pushes. Tests and release builds use the Go version
+declared in `go.mod`. The main job runs `make check`, vulnerability and lint
 checks, race-enabled coverage, and cross-compilation. When changing the pinned
 golangci-lint version, update both `Makefile` and `.github/workflows/ci.yml`.
 

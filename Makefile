@@ -12,7 +12,7 @@ PLATFORMS := linux/amd64 linux/arm64
 
 # Pinned golangci-lint, installed into ./bin under a versioned name so that
 # changing the version installs it again instead of using an older binary.
-GOLANGCI_LINT_VERSION := v2.14.0
+GOLANGCI_LINT_VERSION := v2.15.0
 GOLANGCI_LINT         := $(CURDIR)/bin/golangci-lint-$(GOLANGCI_LINT_VERSION)
 
 .PHONY: all help build demo fmt fmt-check check test test-race test-scripts coverage vet license-check lint vuln clean dist-all

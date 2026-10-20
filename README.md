@@ -48,7 +48,7 @@ download archives from [Releases](https://github.com/JohanLindvall/crprune/relea
 See the [installation reference](docs/reference.md#install) for pinned versions,
 dependencies, and authenticated downloads.
 
-With **Go 1.26 or later**:
+With **Go 1.27.3 or later**:
 
 ```sh
 go install github.com/JohanLindvall/crprune/cmd/crprune@latest

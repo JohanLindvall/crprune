@@ -25,7 +25,7 @@ The script, [`scripts/download.sh`](../scripts/download.sh), downloads the relea
 
 The GNU Wget fallback refuses redirects for authenticated API requests, keeping the token at the original URL. Release assets still follow redirects without credentials. If a repository has moved, use its canonical name in `CRPRUNE_REPO` or install with curl.
 
-To build from source instead (requires Go 1.26 or later):
+To build from source instead (requires Go 1.27.3 or later):
 
 ```sh
 go install github.com/JohanLindvall/crprune/cmd/crprune@latest
