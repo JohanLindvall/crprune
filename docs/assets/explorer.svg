@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1436" height="666" viewBox="0 0 1436 666" role="img" aria-labelledby="title desc">
+<title id="title">crprune statistics explorer</title>
+<desc id="desc">Actual terminal UI rendered with synthetic sample data. Repository sizes, manifest counts, and the selected repository's details.</desc>
+<rect width="1436" height="666" rx="12" fill="#111923"/>
+<g fill="#98a9bc" font-family="ui-monospace,DejaVu Sans Mono,monospace" font-size="14">
+<text x="20" y="28">crprune explore examples/sample-stats.json</text>
+</g>
+<g font-family="ui-monospace,DejaVu Sans Mono,monospace" font-size="16">
+<rect x="28" y="60" width="260" height="21" fill="#1b2938"/>
+<text x="28" y="76" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="260" lengthAdjust="spacingAndGlyphs">CRPRUNE  /  STATS EXPLORER</text>
+<rect x="288" y="60" width="970" height="21" fill="#1b2938"/>
+<rect x="1258" y="60" width="140" height="21" fill="#1b2938"/>
+<text x="1258" y="76" fill="#98a9bc" xml:space="preserve" textLength="140" lengthAdjust="spacingAndGlyphs">LOCAL SNAPSHOT</text>
+<rect x="1398" y="60" width="10" height="21" fill="#1b2938"/>
+<text x="28" y="97" fill="#98a9bc" xml:space="preserve" textLength="430" lengthAdjust="spacingAndGlyphs">examples/sample-stats.json (synthetic data)</text>
+<rect x="28" y="123" width="10" height="21" fill="#1b2938"/>
+<rect x="38" y="123" width="120" height="21" fill="#1b2938"/>
+<text x="38" y="139" fill="#98a9bc" xml:space="preserve" textLength="120" lengthAdjust="spacingAndGlyphs">REPOSITORIES</text>
+<rect x="158" y="123" width="320" height="21" fill="#1b2938"/>
+<rect x="488" y="123" width="10" height="21" fill="#1b2938"/>
+<rect x="498" y="123" width="120" height="21" fill="#1b2938"/>
+<text x="498" y="139" fill="#98a9bc" xml:space="preserve" textLength="120" lengthAdjust="spacingAndGlyphs">UNIQUE BYTES</text>
+<rect x="618" y="123" width="320" height="21" fill="#1b2938"/>
+<rect x="948" y="123" width="10" height="21" fill="#1b2938"/>
+<rect x="958" y="123" width="90" height="21" fill="#1b2938"/>
+<text x="958" y="139" fill="#98a9bc" xml:space="preserve" textLength="90" lengthAdjust="spacingAndGlyphs">MANIFESTS</text>
+<rect x="1048" y="123" width="350" height="21" fill="#1b2938"/>
+<rect x="28" y="144" width="10" height="21" fill="#1b2938"/>
+<rect x="38" y="144" width="70" height="21" fill="#1b2938"/>
+<text x="38" y="160" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="70" lengthAdjust="spacingAndGlyphs">13 / 13</text>
+<rect x="108" y="144" width="370" height="21" fill="#1b2938"/>
+<rect x="488" y="144" width="10" height="21" fill="#1b2938"/>
+<rect x="498" y="144" width="60" height="21" fill="#1b2938"/>
+<text x="498" y="160" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="60" lengthAdjust="spacingAndGlyphs">112 GB</text>
+<rect x="558" y="144" width="380" height="21" fill="#1b2938"/>
+<rect x="948" y="144" width="10" height="21" fill="#1b2938"/>
+<rect x="958" y="144" width="50" height="21" fill="#1b2938"/>
+<text x="958" y="160" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="50" lengthAdjust="spacingAndGlyphs">5,076</text>
+<rect x="1008" y="144" width="390" height="21" fill="#1b2938"/>
+<rect x="28" y="165" width="10" height="21" fill="#1b2938"/>
+<rect x="38" y="165" width="220" height="21" fill="#1b2938"/>
+<text x="38" y="181" fill="#98a9bc" xml:space="preserve" textLength="220" lengthAdjust="spacingAndGlyphs">0 marked · 13 matching</text>
+<rect x="258" y="165" width="220" height="21" fill="#1b2938"/>
+<rect x="488" y="165" width="10" height="21" fill="#1b2938"/>
+<rect x="498" y="165" width="250" height="21" fill="#1b2938"/>
+<text x="498" y="181" fill="#98a9bc" xml:space="preserve" textLength="250" lengthAdjust="spacingAndGlyphs">228 GB total · 51% shared</text>
+<rect x="748" y="165" width="190" height="21" fill="#1b2938"/>
+<rect x="948" y="165" width="10" height="21" fill="#1b2938"/>
+<rect x="958" y="165" width="270" height="21" fill="#1b2938"/>
+<text x="958" y="181" fill="#98a9bc" xml:space="preserve" textLength="270" lengthAdjust="spacingAndGlyphs">1414 tagged · 3662 untagged</text>
+<rect x="1228" y="165" width="170" height="21" fill="#1b2938"/>
+<text x="28" y="202" fill="#98a9bc" xml:space="preserve" textLength="90" lengthAdjust="spacingAndGlyphs"> / search</text>
+<text x="28" y="223" fill="#98a9bc" xml:space="preserve" textLength="340" lengthAdjust="spacingAndGlyphs">Sort: unique ↓   1 / 13   0 marked</text>
+<text x="28" y="244" fill="#40556c" xml:space="preserve" textLength="40" lengthAdjust="spacingAndGlyphs">────</text>
+<text x="68" y="244" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="100" lengthAdjust="spacingAndGlyphs">REPOSITORY</text>
+<text x="168" y="244" fill="#40556c" xml:space="preserve" textLength="190" lengthAdjust="spacingAndGlyphs">───────────────────</text>
+<text x="358" y="244" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="70" lengthAdjust="spacingAndGlyphs">UNIQUE↓</text>
+<text x="428" y="244" fill="#40556c" xml:space="preserve" textLength="30" lengthAdjust="spacingAndGlyphs">───</text>
+<text x="458" y="244" fill="#98a9bc" xml:space="preserve" textLength="50" lengthAdjust="spacingAndGlyphs">TOTAL</text>
+<text x="508" y="244" fill="#40556c" xml:space="preserve" textLength="50" lengthAdjust="spacingAndGlyphs">─────</text>
+<text x="558" y="244" fill="#98a9bc" xml:space="preserve" textLength="60" lengthAdjust="spacingAndGlyphs">SHARED</text>
+<text x="618" y="244" fill="#40556c" xml:space="preserve" textLength="30" lengthAdjust="spacingAndGlyphs">───</text>
+<text x="648" y="244" fill="#98a9bc" xml:space="preserve" textLength="50" lengthAdjust="spacingAndGlyphs">COUNT</text>
+<text x="698" y="244" fill="#40556c" xml:space="preserve" textLength="40" lengthAdjust="spacingAndGlyphs">────</text>
+<text x="738" y="244" fill="#98a9bc" xml:space="preserve" textLength="80" lengthAdjust="spacingAndGlyphs">UNTAGGED</text>
+<text x="818" y="244" fill="#40556c" xml:space="preserve" textLength="20" lengthAdjust="spacingAndGlyphs">──</text>
+<text x="838" y="244" fill="#98a9bc" xml:space="preserve" textLength="60" lengthAdjust="spacingAndGlyphs">TAGGED</text>
+<text x="898" y="244" fill="#40556c" xml:space="preserve" textLength="30" lengthAdjust="spacingAndGlyphs">───</text>
+<text x="928" y="244" fill="#98a9bc" xml:space="preserve" textLength="70" lengthAdjust="spacingAndGlyphs">RUNNING</text>
+<text x="998" y="244" fill="#40556c" xml:space="preserve" textLength="20" lengthAdjust="spacingAndGlyphs">──</text>
+<text x="1038" y="244" fill="#40556c" xml:space="preserve" textLength="10" lengthAdjust="spacingAndGlyphs">─</text>
+<text x="1048" y="244" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="90" lengthAdjust="spacingAndGlyphs"> DETAILS </text>
+<text x="1138" y="244" fill="#40556c" xml:space="preserve" textLength="260" lengthAdjust="spacingAndGlyphs">──────────────────────────</text>
+<rect x="28" y="249" width="990" height="21" fill="#254459"/>
+<text x="28" y="265" fill="#dce4ee" font-weight="bold" xml:space="preserve" textLength="990" lengthAdjust="spacingAndGlyphs">›   ml/training                  42 GB     59 GB     29.2%    246      230       16       0        </text>
+<text x="18" y="286" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     ci/runner                    25 GB     66 GB     62.2%    159      106       53       0          </text>
+<text x="1038" y="286" fill="#dce4ee" font-weight="bold" xml:space="preserve" textLength="110" lengthAdjust="spacingAndGlyphs">ml/training</text>
+<text x="18" y="307" fill="#dce4ee" xml:space="preserve" textLength="1400" lengthAdjust="spacingAndGlyphs">     ml/inference                 18 GB     31 GB     41.0%    101      74        27       2                                                </text>
+<text x="18" y="328" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     legacy/monolith              9.7 GB    10 GB     4.7%     16       4         12       0          </text>
+<text x="1038" y="328" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="120" lengthAdjust="spacingAndGlyphs">42 GB unique</text>
+<text x="18" y="349" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     data/etl                     4.8 GB    7.5 GB    35.2%    52       33        19       1          </text>
+<text x="1038" y="349" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="250" lengthAdjust="spacingAndGlyphs">━━━━━━━━━━━━━━━━━━━━━━━━━</text>
+<text x="1288" y="349" fill="#40556c" xml:space="preserve" textLength="110" lengthAdjust="spacingAndGlyphs">───────────</text>
+<text x="18" y="370" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     api                          3.1 GB    9.8 GB    68.1%    1,474    1,260     214      3          </text>
+<text x="1038" y="370" fill="#98a9bc" xml:space="preserve" textLength="260" lengthAdjust="spacingAndGlyphs">59 GB total · 29.2% shared</text>
+<text x="18" y="391" fill="#dce4ee" xml:space="preserve" textLength="1400" lengthAdjust="spacingAndGlyphs">     base-images/node             2.4 GB    2.9 GB    18.2%    137      96        41       0                                                </text>
+<text x="18" y="412" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     web                          2.2 GB    8.1 GB    72.4%    1,176    980       196      3          </text>
+<text x="1038" y="412" fill="#87d8a0" xml:space="preserve" textLength="240" lengthAdjust="spacingAndGlyphs">16 tagged / 230 untagged</text>
+<text x="18" y="433" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     preview/web                  1.9 GB    22 GB     91.4%    728      88        640      4          </text>
+<text x="1038" y="433" fill="#87d8a0" xml:space="preserve" textLength="20" lengthAdjust="spacingAndGlyphs">━━</text>
+<text x="1058" y="433" fill="#40556c" xml:space="preserve" textLength="340" lengthAdjust="spacingAndGlyphs">──────────────────────────────────</text>
+<text x="18" y="454" fill="#dce4ee" xml:space="preserve" textLength="1400" lengthAdjust="spacingAndGlyphs">     base-images/go               1.2 GB    1.4 GB    15.4%    150      112       38       0                                                </text>
+<text x="18" y="475" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     billing/invoice-worker       642 MB    4.6 GB    86.1%    490      402       88       2          </text>
+<text x="1038" y="475" fill="#98a9bc" xml:space="preserve" textLength="270" lengthAdjust="spacingAndGlyphs">Running  0 (if inventoried)</text>
+<text x="18" y="496" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     billing/ledger               518 MB    3.9 GB    86.8%    338      277       61       1          </text>
+<text x="1038" y="496" fill="#98a9bc" xml:space="preserve" textLength="190" lengthAdjust="spacingAndGlyphs">Newest   2026-07-30</text>
+<text x="18" y="517" fill="#dce4ee" xml:space="preserve" textLength="1020" lengthAdjust="spacingAndGlyphs">     tools/migrate                85 MB     140 MB    39.1%    9        0         9        0          </text>
+<text x="1038" y="517" fill="#98a9bc" xml:space="preserve" textLength="190" lengthAdjust="spacingAndGlyphs">Oldest   2025-04-11</text>
+<text x="28" y="622" fill="#98a9bc" xml:space="preserve" textLength="590" lengthAdjust="spacingAndGlyphs">Enter details · Space mark · a mark visible · c clear marks</text>
+<text x="28" y="643" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="700" lengthAdjust="spacingAndGlyphs">Enter/i stats  Space mark  S pattern  / search  s sort  ? help  q quit</text>
+</g>
+</svg>

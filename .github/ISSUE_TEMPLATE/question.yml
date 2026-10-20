@@ -1,0 +1,22 @@
+name: Usage question
+description: Get help with installation, authentication, or retention rules.
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The [getting-started guide](https://github.com/JohanLindvall/crprune/blob/main/docs/getting-started.md)
+        and [reference](https://github.com/JohanLindvall/crprune/blob/main/docs/reference.md) may help.
+        Keep credentials and private registry data out of your question.
+  - type: textarea
+    id: question
+    attributes:
+      label: What would you like help with?
+      description: Describe your goal and what you have tried.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Version and example
+      description: Include crprune --version, the registry type, and a small sanitized command or policy if relevant.

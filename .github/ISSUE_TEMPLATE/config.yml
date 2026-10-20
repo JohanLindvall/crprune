@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/JohanLindvall/crprune/security/advisories/new
+    about: Report suspected vulnerabilities privately.
+  - name: Read the documentation
+    url: https://github.com/JohanLindvall/crprune/blob/main/docs/getting-started.md
+    about: Installation, first cleanup, credentials, and troubleshooting.

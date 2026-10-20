@@ -15,12 +15,42 @@ PLATFORMS := linux/amd64 linux/arm64
 GOLANGCI_LINT_VERSION := v2.14.0
 GOLANGCI_LINT         := $(CURDIR)/bin/golangci-lint-$(GOLANGCI_LINT_VERSION)
 
-.PHONY: all build test test-race test-scripts coverage vet license-check lint vuln clean dist-all
+.PHONY: all help build demo fmt fmt-check check test test-race test-scripts coverage vet license-check lint vuln clean dist-all
 
 all: build
 
+help:
+	@printf '%s\n' \
+	  'make build          Build ./crprune (default target)' \
+	  'make demo           Explore synthetic data; no credentials needed' \
+	  'make fmt            Format Go source files' \
+	  'make check          Check formatting, vet, licenses, and all tests' \
+	  'make test           Run Go and mocked shell tests (requires jq)' \
+	  'make test-race      Run Go tests with the race detector and shell tests' \
+	  'make coverage       Write coverage.out and print function coverage' \
+	  'make vet            Run go vet' \
+	  'make license-check  Check SPDX headers in Go and shell source' \
+	  'make lint           Run pinned golangci-lint (downloads on first use)' \
+	  'make vuln           Scan dependencies with govulncheck' \
+	  'make dist-all       Build Linux amd64/arm64 release archives' \
+	  'make clean          Remove local binary and release archives'
+
 build:
 	go build -trimpath -ldflags '$(LDFLAGS)' -o $(BINARY) $(PKG)
+
+demo: build
+	./$(BINARY) explore examples/sample-stats.json
+
+fmt:
+	gofmt -w cmd internal rules
+
+fmt-check:
+	@set -eu; unformatted=$$(gofmt -l cmd internal rules); \
+	if [ -n "$$unformatted" ]; then \
+	  printf 'Run make fmt to format:\n%s\n' "$$unformatted" >&2; exit 1; \
+	fi
+
+check: fmt-check vet license-check test
 
 test:
 	go test ./...
@@ -31,6 +61,7 @@ test-race:
 	$(MAKE) test-scripts
 
 test-scripts:
+	@command -v jq >/dev/null 2>&1 || { echo 'jq is required for script tests; install jq, then retry.' >&2; exit 1; }
 	sh scripts/get_pod_images_test.sh
 	sh scripts/download_test.sh
 

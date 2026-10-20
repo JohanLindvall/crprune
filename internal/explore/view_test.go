@@ -301,10 +301,18 @@ func TestRenderSample(t *testing.T) {
 	if out == "" {
 		t.Skip("set CRPRUNE_RENDER_DIR for sample render")
 	}
-	stats := sampleStats()
-	for _, size := range [][2]int{{140, 34}, {80, 24}} {
+	t.Setenv("NO_COLOR", "")
+	sample, err := os.ReadFile(filepath.Join("..", "..", "examples", "sample-stats.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	stats, err := pruner.ReadStats(strings.NewReader(string(sample)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, size := range [][2]int{{140, 28}, {80, 24}} {
 		s := screenFor(t, size[0], size[1])
-		a := newApp(stats, Options{Source: "sample statistics"})
+		a := newApp(stats, Options{Source: "examples/sample-stats.json (synthetic data)"})
 		a.draw(s, time.Now())
 		cells, w, h := s.GetContents()
 		type cell struct {
