@@ -1,17 +1,17 @@
 #!/bin/sh
 # SPDX-License-Identifier: MIT
-# Install the crprune binary for this machine from a GitHub release: resolve
+# Install the regtend binary for this machine from a GitHub release: resolve
 # the release, verify its archive against the release's checksums, and replace
-# DIR/crprune atomically. Messages go to stderr; the installed path to stdout.
+# DIR/regtend atomically. Messages go to stderr; the installed path to stdout.
 #
-#   curl -fsSL https://github.com/JohanLindvall/crprune/releases/latest/download/download.sh | sh -s -- ~/.local/bin
+#   curl -fsSL https://github.com/JohanLindvall/regtend/releases/latest/download/download.sh | sh -s -- ~/.local/bin
 set -eu
 
-repo=${CRPRUNE_REPO:-JohanLindvall/crprune}
+repo=${REGTEND_REPO:-JohanLindvall/regtend}
 
 usage() {
   echo "Usage: download.sh [-v VERSION] [DIR]"
-  echo "Installs DIR/crprune (default: the current directory) from the latest"
+  echo "Installs DIR/regtend (default: the current directory) from the latest"
   echo "release of github.com/$repo, or from release VERSION (e.g. v0.1.13)."
   echo "Requires curl or GNU Wget, tar, and sha256sum or shasum."
   echo "GH_TOKEN or GITHUB_TOKEN, when set, authenticates the GitHub API request."
@@ -121,16 +121,16 @@ main() {
   esac
 
   assets=$(grep -o '"name": *"[^"]*"' "$tmp/release.json" | sed 's/^"name": *"\(.*\)"$/\1/')
-  # Releases before v0.1.13 were named acrprune; they install under that name.
+  # Older releases used crprune or acrprune; install their original binary.
   binary=
-  for name in crprune acrprune; do
+  for name in regtend crprune acrprune; do
     if printf '%s\n' "$assets" | grep -qxF "$name-$tag-$os-$arch.tar.gz"; then
       binary=$name
       break
     fi
   done
   if [ -z "$binary" ]; then
-    available=$(printf '%s\n' "$assets" | sed -n "s/^a\{0,1\}crprune-$tag-\([^-]*\)-\([^-]*\)\.tar\.gz\$/\1\/\2/p" | tr '\n' ' ')
+    available=$(printf '%s\n' "$assets" | sed -En "s/^(regtend|crprune|acrprune)-$tag-([^-]*)-([^-]*)\.tar\.gz\$/\2\/\3/p" | tr '\n' ' ')
     available=${available% }
     die "release $tag has no build for $os/$arch (available: ${available:-none})"
   fi

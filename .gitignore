@@ -1,4 +1,6 @@
 .cache
+/regtend
+# Local binaries built before the Regtend rename.
 /crprune
 /bin/
 /images

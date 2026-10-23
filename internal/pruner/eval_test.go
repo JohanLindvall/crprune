@@ -13,8 +13,8 @@ import (
 
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
 )
 
 // keepsWithNewest builds a rule deleting untagged manifests with the given

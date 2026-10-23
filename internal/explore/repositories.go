@@ -10,8 +10,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/tui"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/tui"
 	"github.com/gdamore/tcell/v2"
 )
 

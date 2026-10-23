@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
 )
 
 // The tests in this file run the pruner against the fake GitHub, end to end.

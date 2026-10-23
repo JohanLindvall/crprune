@@ -7,7 +7,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/tui"
+	"github.com/JohanLindvall/regtend/internal/tui"
 	"github.com/dustin/go-humanize"
 	"github.com/gdamore/tcell/v2"
 )
@@ -30,7 +30,7 @@ func draw(screen tcell.Screen, s Snapshot, opts Options, v *viewState, now time.
 		}
 	}
 	tui.Fill(screen, 1, 0, w-2, 1, t.Panel)
-	put(0, t.OnPanel(modeStyle), "CRPRUNE  /  "+mode)
+	put(0, t.OnPanel(modeStyle), "REGTEND  /  "+mode)
 	put(1, t.Muted, opts.Registry)
 	elapsed := max(now.Sub(s.Started), 0).Round(time.Second)
 	phase := s.Phase

@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/JohanLindvall/crprune/internal/fileio"
+	"github.com/JohanLindvall/regtend/internal/fileio"
 )
 
 // digestPattern matches an `algorithm:hex` OCI digest. Digests become file

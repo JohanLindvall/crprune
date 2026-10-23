@@ -1,10 +1,10 @@
-# Contributing to crprune
+# Contributing to Regtend
 
 You can help with documentation, reproducible bug reports, retention-policy
 examples, or code. No Azure subscription, GitHub package, or Kubernetes cluster
 is needed to build or test the project.
 
-For usage help, [open a question](https://github.com/JohanLindvall/crprune/issues/new?template=question.yml).
+For usage help, [open a question](https://github.com/JohanLindvall/regtend/issues/new?template=question.yml).
 For vulnerabilities, follow [SECURITY.md](SECURITY.md) instead of opening a public
 issue. Please follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -19,16 +19,16 @@ servers.
 Fork the repository for a pull request, clone your fork, and create a branch:
 
 ```sh
-git clone https://github.com/YOUR-USERNAME/crprune.git
-cd crprune
+git clone https://github.com/YOUR-USERNAME/regtend.git
+cd regtend
 git switch -c improve-quickstart
 make build
-./crprune --help
+./regtend --help
 make demo
 ```
 
 `make demo` opens synthetic sample statistics in an interactive terminal. Use
-`./crprune top examples/sample-stats.json` for plain output.
+`./regtend top examples/sample-stats.json` for plain output.
 
 ## Everyday commands
 
@@ -36,7 +36,7 @@ Run `make help` for the available targets.
 
 | Command | Purpose |
 | --- | --- |
-| `make build` | Build `./crprune`, with its version derived from Git |
+| `make build` | Build `./regtend`, with its version derived from Git |
 | `make fmt` | Format Go source files |
 | `make check` | Check formatting, vet, SPDX headers, Go tests, and script tests |
 | `make test-race` | Run Go tests with the race detector, plus script tests |
@@ -61,10 +61,10 @@ lint, race-enabled coverage, and release builds as well.
 ## Make a useful contribution
 
 - Fix an unclear instruction, add a focused rule example, or improve a specific
-  error message. Browse [good first issues](https://github.com/JohanLindvall/crprune/labels/good%20first%20issue)
-  and [help wanted](https://github.com/JohanLindvall/crprune/labels/help%20wanted);
+  error message. Browse [good first issues](https://github.com/JohanLindvall/regtend/labels/good%20first%20issue)
+  and [help wanted](https://github.com/JohanLindvall/regtend/labels/help%20wanted);
   these lists may be empty.
-- Search existing issues before reporting a problem. Include the crprune version,
+- Search existing issues before reporting a problem. Include the Regtend version,
   registry type, a minimal policy, expected behaviour, and sanitized logs.
 - For a new registry backend or a change to deletion semantics, describe the
   use case in an issue before investing in a large implementation.
@@ -95,7 +95,7 @@ rules. Both terminal interfaces share grapheme-aware drawing and wrapping in
 
 | Package | Responsibility |
 | --- | --- |
-| `cmd/crprune` | CLI commands, flags, I/O, credentials, and signals |
+| `cmd/regtend` | CLI commands, flags, I/O, credentials, and signals |
 | `internal/rules` | Rule parsing, validation, matching, and generation |
 | `internal/pruner` | Retention decisions, deletion plans, and statistics |
 | `internal/registry` | Registry-neutral manifest access, caching, and deletion |
@@ -135,7 +135,7 @@ go test ./internal/rules -run '^$' -bench BenchmarkRepositoryMatcher -benchmem
 go test ./internal/tui -run '^$' -bench BenchmarkWrapLongText -benchmem
 ```
 
-For terminal visual checks, set `CRPRUNE_RENDER_DIR` to an existing directory and
+For terminal visual checks, set `REGTEND_RENDER_DIR` to an existing directory and
 run `go test ./internal/explore -run TestRenderSample -count=1 -v`. It writes the
 terminal's cells, colours, and dimensions as JSON using synthetic sample data.
 See [the screenshot instructions](docs/assets/README.md) to refresh the README
@@ -149,5 +149,5 @@ checks, race-enabled coverage, and cross-compilation. When changing the pinned
 golangci-lint version, update both `Makefile` and `.github/workflows/ci.yml`.
 
 Each build keeps the archives and checksums in a workflow artifact named
-`crprune-<commit>`. **Every push to `main` publishes a new patch release.** A PR
+`regtend-<commit>`. **Every push to `main` publishes a new patch release.** A PR
 build does not publish a release. Release notes group merged PRs by their labels.

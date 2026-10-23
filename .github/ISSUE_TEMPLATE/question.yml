@@ -5,8 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        The [getting-started guide](https://github.com/JohanLindvall/crprune/blob/main/docs/getting-started.md)
-        and [reference](https://github.com/JohanLindvall/crprune/blob/main/docs/reference.md) may help.
+        The [getting-started guide](https://github.com/JohanLindvall/regtend/blob/main/docs/getting-started.md)
+        and [reference](https://github.com/JohanLindvall/regtend/blob/main/docs/reference.md) may help.
         Keep credentials and private registry data out of your question.
   - type: textarea
     id: question
@@ -19,4 +19,4 @@ body:
     id: context
     attributes:
       label: Version and example
-      description: Include crprune --version, the registry type, and a small sanitized command or policy if relevant.
+      description: Include regtend --version, the registry type, and a small sanitized command or policy if relevant.

@@ -1,5 +1,5 @@
-BINARY  := crprune
-PKG     := ./cmd/crprune
+BINARY  := regtend
+PKG     := ./cmd/regtend
 DISTDIR := dist
 
 # Version is derived from git and injected into the binary. Override on the
@@ -21,7 +21,7 @@ all: build
 
 help:
 	@printf '%s\n' \
-	  'make build          Build ./crprune (default target)' \
+	  'make build          Build ./regtend (default target)' \
 	  'make demo           Explore synthetic data; no credentials needed' \
 	  'make fmt            Format Go source files' \
 	  'make check          Check formatting, vet, licenses, and all tests' \

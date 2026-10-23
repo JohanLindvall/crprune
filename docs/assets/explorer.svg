@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1436" height="666" viewBox="0 0 1436 666" role="img" aria-labelledby="title desc">
-<title id="title">crprune statistics explorer</title>
+<title id="title">Regtend statistics explorer</title>
 <desc id="desc">Actual terminal UI rendered with synthetic sample data. Repository sizes, manifest counts, and the selected repository's details.</desc>
 <rect width="1436" height="666" rx="12" fill="#111923"/>
 <g fill="#98a9bc" font-family="ui-monospace,DejaVu Sans Mono,monospace" font-size="14">
-<text x="20" y="28">crprune explore examples/sample-stats.json</text>
+<text x="20" y="28">regtend explore examples/sample-stats.json</text>
 </g>
 <g font-family="ui-monospace,DejaVu Sans Mono,monospace" font-size="16">
 <rect x="28" y="60" width="260" height="21" fill="#1b2938"/>
-<text x="28" y="76" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="260" lengthAdjust="spacingAndGlyphs">CRPRUNE  /  STATS EXPLORER</text>
+<text x="28" y="76" fill="#62d6e8" font-weight="bold" xml:space="preserve" textLength="260" lengthAdjust="spacingAndGlyphs">REGTEND  /  STATS EXPLORER</text>
 <rect x="288" y="60" width="970" height="21" fill="#1b2938"/>
 <rect x="1258" y="60" width="140" height="21" fill="#1b2938"/>
 <text x="1258" y="76" fill="#98a9bc" xml:space="preserve" textLength="140" lengthAdjust="spacingAndGlyphs">LOCAL SNAPSHOT</text>

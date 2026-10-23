@@ -14,9 +14,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/registry/registrytest"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry/registrytest"
 	"github.com/gdamore/tcell/v2"
 )
 
@@ -297,9 +297,9 @@ func TestExplorerDrawResponsiveNoColorAndEmpty(t *testing.T) {
 // An opt-in render artifact lets visual QA inspect exactly the cells tcell
 // draws, using the supplied sample without making it a test dependency.
 func TestRenderSample(t *testing.T) {
-	out := os.Getenv("CRPRUNE_RENDER_DIR")
+	out := os.Getenv("REGTEND_RENDER_DIR")
 	if out == "" {
-		t.Skip("set CRPRUNE_RENDER_DIR for sample render")
+		t.Skip("set REGTEND_RENDER_DIR for sample render")
 	}
 	t.Setenv("NO_COLOR", "")
 	sample, err := os.ReadFile(filepath.Join("..", "..", "examples", "sample-stats.json"))

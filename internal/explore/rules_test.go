@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/registry/registrytest"
-	presets "github.com/JohanLindvall/crprune/rules"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry/registrytest"
+	presets "github.com/JohanLindvall/regtend/rules"
 	"github.com/gdamore/tcell/v2"
 )
 

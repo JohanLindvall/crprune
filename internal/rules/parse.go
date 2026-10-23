@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/JohanLindvall/crprune/internal/jsonpos"
+	"github.com/JohanLindvall/regtend/internal/jsonpos"
 )
 
 // jsonSpace is the whitespace JSON allows between tokens.

@@ -13,7 +13,7 @@ import (
 	"slices"
 	"sync"
 
-	"github.com/JohanLindvall/crprune/internal/imageref"
+	"github.com/JohanLindvall/regtend/internal/imageref"
 
 	"golang.org/x/sync/errgroup"
 )

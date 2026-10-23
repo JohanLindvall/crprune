@@ -1,10 +1,10 @@
 # Your first cleanup
 
-[README](../README.md) · [Full reference](reference.md) · [Get help](https://github.com/JohanLindvall/crprune/issues/new/choose)
+[README](../README.md) · [Full reference](reference.md) · [Get help](https://github.com/JohanLindvall/regtend/issues/new/choose)
 
-This walkthrough starts with one repository and a dry run. Install crprune using
+This walkthrough starts with one repository and a dry run. Install Regtend using
 the [installation instructions](../README.md#install), then check
-`crprune --version`.
+`regtend --version`.
 
 ## 1. Choose and authenticate with a registry
 
@@ -17,7 +17,7 @@ REGISTRY=myregistry
 ```
 
 Use the registry name or its ACR login server, such as `myregistry.azurecr.io`.
-crprune uses Azure's `DefaultAzureCredential`, so environment credentials,
+Regtend uses Azure's `DefaultAzureCredential`, so environment credentials,
 workload identity, and managed identity are also supported. The identity needs
 access to the repositories you select. ABAC registries can use literal
 repository rules without catalog-listing permission.
@@ -74,14 +74,14 @@ policy before using it: they apply to all repositories by default.
 ## 3. Preview the deletions
 
 ```sh
-crprune -r "$REGISTRY" --progress=plain prune --in rules.json
+regtend -r "$REGISTRY" --progress=plain prune --in rules.json
 ```
 
 `prune` defaults to a dry run. Look for `Dry-run: deleting manifest` and review the
 repository, digest, and tags. Save the log for review if useful:
 
 ```sh
-crprune -r "$REGISTRY" --progress=plain prune --in rules.json 2> plan.log
+regtend -r "$REGISTRY" --progress=plain prune --in rules.json 2> plan.log
 ```
 
 Recent images (updated within 24 hours), images with no update timestamp, and
@@ -96,13 +96,13 @@ From a checkout, collect images from the relevant kubeconfig contexts using
 
 ```sh
 scripts/get_pod_images.sh my-context > images.txt &&
-  crprune -r "$REGISTRY" --progress=plain prune --in rules.json --running images.txt
+  regtend -r "$REGISTRY" --progress=plain prune --in rules.json --running images.txt
 ```
 
 The inventory includes pods and workload templates, including workloads scaled
 to zero and rollout history. Pass multiple context names to include more clusters;
 omitting names scans all configured contexts. Running-image protection is
-explicit: crprune does not discover clusters on its own.
+explicit: Regtend does not discover clusters on its own.
 
 Keep the `&&`: a failed inventory must stop the cleanup. Add images referenced
 only in other clusters, deployment pipelines, or unsupported custom resources
@@ -113,27 +113,27 @@ before applying the policy. See [inventory coverage](reference.md#kubernetes-ima
 When the dry run matches your intent, repeat it with `--dry-run=false`:
 
 ```sh
-crprune -r "$REGISTRY" prune --in rules.json --dry-run=false
+regtend -r "$REGISTRY" prune --in rules.json --dry-run=false
 ```
 
 If the preview used `--running images.txt`, include it in the live command too:
 
 ```sh
-crprune -r "$REGISTRY" prune --in rules.json --running images.txt --dry-run=false
+regtend -r "$REGISTRY" prune --in rules.json --running images.txt --dry-run=false
 ```
 
 A CLI dry run is not a saved execution plan; the live run evaluates the current
 registry and checks each repository again before deletion. Avoid concurrent
 pushes or retagging during cleanup. For an interactive preview with a fixed
 selection and typed confirmation, use
-`crprune -r "$REGISTRY" explore --rules rules.json`.
+`regtend -r "$REGISTRY" explore --rules rules.json`.
 
 ## See where the space goes
 
 ```sh
-crprune -r "$REGISTRY" stats --out stats.json
-crprune top stats.json -k 10
-crprune explore stats.json
+regtend -r "$REGISTRY" stats --out stats.json
+regtend top stats.json -k 10
+regtend explore stats.json
 ```
 
 `unique` counts each blob once across the scan. It is not a promise of reclaimed
@@ -145,15 +145,15 @@ supplied. Read the [statistics field definitions](reference.md#statistics-alias-
 
 | Symptom | What to check |
 | --- | --- |
-| `crprune: command not found` | Add `~/.local/bin` or Go's binary directory to `PATH`, or use `./crprune` after `make build`. |
+| `regtend: command not found` | Add `~/.local/bin` or Go's binary directory to `PATH`, or use `./regtend` after `make build`. |
 | Azure authentication fails | Run `az login`; check whether environment credentials override the intended identity and whether the Azure cloud is correct. |
 | ACR catalog listing is denied | Use literal repository patterns such as `^my-app$`, or grant catalog-listing access. See [ABAC permissions](reference.md#abac-registries-and-scoped-permissions). |
 | GHCR reports missing packages or denies deletion | Check owner/package names, token scopes, package admin access, and whether `GH_TOKEN` or `GITHUB_TOKEN` overrides the CLI login. |
 | An image was kept unexpectedly | Check the 24-hour grace period, all tags, first-match rule order, locks, `--running`, and dependencies/referrers of kept images. Add `-v` before the subcommand for debug logs. |
-| Explorer cannot open a terminal | Run it in an interactive terminal. Use `crprune top stats.json` for noninteractive output or `--progress=plain` for batch commands. |
+| Explorer cannot open a terminal | Run it in an interactive terminal. Use `regtend top stats.json` for noninteractive output or `--progress=plain` for batch commands. |
 | A run exits nonzero but wrote statistics or deleted some images | A denied repository or interruption can leave partial results. Read the final summary before retrying. |
-| The installer is rate-limited | Supply `GH_TOKEN` or `GITHUB_TOKEN`, or download an archive from [Releases](https://github.com/JohanLindvall/crprune/releases). |
+| The installer is rate-limited | Supply `GH_TOKEN` or `GITHUB_TOKEN`, or download an archive from [Releases](https://github.com/JohanLindvall/regtend/releases). |
 
 For a bug report, include the version, operating system, registry type, a minimal
-rule file, and sanitized logs. [Issue forms](https://github.com/JohanLindvall/crprune/issues/new/choose)
+rule file, and sanitized logs. [Issue forms](https://github.com/JohanLindvall/regtend/issues/new/choose)
 walk you through this; report security issues [privately](../SECURITY.md).

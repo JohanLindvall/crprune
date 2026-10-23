@@ -10,9 +10,9 @@ import (
 	"slices"
 	"sync/atomic"
 
-	"github.com/JohanLindvall/crprune/internal/progress"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/progress"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
 )
 
 // DeletionPlan holds an immutable decision for review. It can be executed once,

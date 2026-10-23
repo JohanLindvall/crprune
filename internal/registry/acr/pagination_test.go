@@ -10,7 +10,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry"
 )
 
 func TestListingsValidateLinksBeforeSDKDecoding(t *testing.T) {

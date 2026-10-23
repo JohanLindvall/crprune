@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/progress"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/progress"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
 	"github.com/dustin/go-humanize"
 )
 

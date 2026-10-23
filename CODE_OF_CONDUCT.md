@@ -1,6 +1,6 @@
 # Code of Conduct
 
-crprune welcomes people of every background and experience level. This applies
+Regtend welcomes people of every background and experience level. This applies
 to issues, pull requests, reviews, and other project spaces.
 
 ## Working together

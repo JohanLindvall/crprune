@@ -15,8 +15,8 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/imageref"
-	"github.com/JohanLindvall/crprune/internal/jsonpos"
+	"github.com/JohanLindvall/regtend/internal/imageref"
+	"github.com/JohanLindvall/regtend/internal/jsonpos"
 	"github.com/dustin/go-humanize"
 )
 

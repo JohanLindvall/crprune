@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/progress"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/progress"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
 )
 
 // RepositoryStats summarizes one repository's manifests. Unique counts each

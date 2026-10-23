@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/explore"
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/explore"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
 	"github.com/urfave/cli/v3"
 )
 

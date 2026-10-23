@@ -12,8 +12,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/JohanLindvall/crprune/internal/rules"
-	presets "github.com/JohanLindvall/crprune/rules"
+	"github.com/JohanLindvall/regtend/internal/rules"
+	presets "github.com/JohanLindvall/regtend/rules"
 )
 
 // RuleFile is one independently selectable rule set. Invalid files remain in

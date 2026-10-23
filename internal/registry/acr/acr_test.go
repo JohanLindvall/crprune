@@ -30,8 +30,8 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/runtime"
 	godigest "github.com/opencontainers/go-digest"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/registry/registrytest"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry/registrytest"
 )
 
 // fakeACR emulates the ACR data-plane endpoints the backend uses, including
@@ -932,7 +932,7 @@ func TestPermanentFailuresAreFinal(t *testing.T) {
 		skip func(error) bool
 	}{
 		{name: "certificate signed by an unknown authority", endpoint: untrusted.URL},
-		{name: "host that does not exist", endpoint: "https://crprune.invalid", skip: func(err error) bool {
+		{name: "host that does not exist", endpoint: "https://regtend.invalid", skip: func(err error) bool {
 			dnsErr, ok := errors.AsType[*net.DNSError](err)
 			return !ok || !dnsErr.IsNotFound
 		}},

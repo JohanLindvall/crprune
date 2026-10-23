@@ -11,8 +11,8 @@ import (
 	"runtime/debug"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/cancellation"
-	"github.com/JohanLindvall/crprune/internal/tui"
+	"github.com/JohanLindvall/regtend/internal/cancellation"
+	"github.com/JohanLindvall/regtend/internal/tui"
 	"github.com/dustin/go-humanize"
 	"github.com/gdamore/tcell/v2"
 	"golang.org/x/term"
@@ -92,7 +92,7 @@ var (
 	release  = tui.Release
 )
 
-// RestoreTerminal restores any active crprune terminal interface.
+// RestoreTerminal restores any active regtend terminal interface.
 func RestoreTerminal() { tui.RestoreTerminal() }
 
 // summarize leaves the outcome, and the warnings the display retained, in

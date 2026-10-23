@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/registry/registrytest"
-	"github.com/JohanLindvall/crprune/internal/tui"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry/registrytest"
+	"github.com/JohanLindvall/regtend/internal/tui"
 	"github.com/gdamore/tcell/v2"
 )
 
@@ -204,7 +204,7 @@ func TestForcedRestoreClosesExplorer(t *testing.T) {
 func TestExplorerNeedsTerminal(t *testing.T) {
 	fakeScreen(t)
 	stderrIsTerminal = func() bool { return false }
-	if err := Run(t.Context(), nil, Options{}); err == nil || !strings.Contains(err.Error(), "crprune top") {
+	if err := Run(t.Context(), nil, Options{}); err == nil || !strings.Contains(err.Error(), "regtend top") {
 		t.Fatal(err)
 	}
 }

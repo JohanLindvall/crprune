@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
 )
 
 // evaluator decides, for a single repository under a single repository rule,

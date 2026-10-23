@@ -12,12 +12,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/cancellation"
-	"github.com/JohanLindvall/crprune/internal/progress"
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/rules"
-	"github.com/JohanLindvall/crprune/internal/tui"
+	"github.com/JohanLindvall/regtend/internal/cancellation"
+	"github.com/JohanLindvall/regtend/internal/progress"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/tui"
 	"github.com/gdamore/tcell/v2"
 	"golang.org/x/term"
 )
@@ -52,7 +52,7 @@ func Run(ctx context.Context, stats []pruner.RepositoryStats, opts Options) erro
 		return err
 	}
 	if !stderrIsTerminal() || os.Getenv("TERM") == "dumb" {
-		return errors.New("explore needs an interactive terminal on stderr; use crprune top for plain output")
+		return errors.New("explore needs an interactive terminal on stderr; use regtend top for plain output")
 	}
 	screen, err := newScreen()
 	if err != nil {
@@ -274,7 +274,7 @@ func (a *app) finishJob(r result) result {
 
 func (a *app) live() bool {
 	if a.opts.Client == nil || a.opts.Client.Connect == nil {
-		a.showMessage("REGISTRY REQUIRED", "Reopen with --registry to browse or delete live images.", "Example: crprune -r ghcr.io/OWNER explore "+a.opts.Source)
+		a.showMessage("REGISTRY REQUIRED", "Reopen with --registry to browse or delete live images.", "Example: regtend -r ghcr.io/OWNER explore "+a.opts.Source)
 		return false
 	}
 	return true

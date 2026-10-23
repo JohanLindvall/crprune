@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/tui"
+	"github.com/JohanLindvall/regtend/internal/tui"
 )
 
 // logHandler captures structured logs while the TUI owns the terminal, using

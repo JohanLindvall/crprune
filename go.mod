@@ -1,4 +1,4 @@
-module github.com/JohanLindvall/crprune
+module github.com/JohanLindvall/regtend
 
 go 1.27.3
 

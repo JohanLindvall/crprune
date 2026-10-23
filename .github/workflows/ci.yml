@@ -49,7 +49,7 @@ jobs:
         run: make dist-all
       - uses: actions/upload-artifact@v7
         with:
-          name: crprune-${{ github.sha }}
+          name: regtend-${{ github.sha }}
           path: dist/
           if-no-files-found: error
 

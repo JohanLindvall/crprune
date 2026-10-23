@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-// Command crprune prunes manifests and repositories of Azure Container
+// Command regtend prunes manifests and repositories of Azure Container
 // Registry and GitHub Container Registry using declarative JSON rules.
 package main
 
@@ -25,14 +25,14 @@ import (
 	"github.com/urfave/cli/v3"
 	"golang.org/x/term"
 
-	"github.com/JohanLindvall/crprune/internal/cancellation"
-	"github.com/JohanLindvall/crprune/internal/fileio"
-	"github.com/JohanLindvall/crprune/internal/progress"
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/registry"
-	"github.com/JohanLindvall/crprune/internal/registry/acr"
-	"github.com/JohanLindvall/crprune/internal/registry/ghcr"
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/cancellation"
+	"github.com/JohanLindvall/regtend/internal/fileio"
+	"github.com/JohanLindvall/regtend/internal/progress"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry/acr"
+	"github.com/JohanLindvall/regtend/internal/registry/ghcr"
+	"github.com/JohanLindvall/regtend/internal/rules"
 )
 
 // version is set at build time via -ldflags "-X main.version=...". Other
@@ -106,7 +106,7 @@ func resolveVersion(info *debug.BuildInfo, ok bool) string {
 	return info.Main.Version
 }
 
-// newCommand builds the crprune CLI command tree. It is split out from main
+// newCommand builds the regtend CLI command tree. It is split out from main
 // so tests can inspect the flag wiring.
 func newCommand() *cli.Command {
 	return newCommandWithConnector(connect)
@@ -125,7 +125,7 @@ func newCommandWithConnector(connect func(context.Context, *cli.Command, registr
 	cli.VersionFlag = &cli.BoolFlag{Name: "version", Usage: "print the version"}
 
 	cmd := &cli.Command{
-		Name:    "crprune",
+		Name:    "regtend",
 		Version: resolveVersion(debug.ReadBuildInfo()),
 		Usage:   "prune Azure Container Registry and GitHub Container Registry manifests using declarative rules",
 		// Only an unknown command reaches the root action with arguments;

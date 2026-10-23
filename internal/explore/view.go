@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/tui"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/tui"
 	"github.com/dustin/go-humanize"
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/uniseg"
@@ -27,7 +27,7 @@ func (a *app) draw(screen tcell.Screen, now time.Time) {
 	}
 	put := func(y int, style tcell.Style, text string) { tui.Text(screen, 1, y, w-2, style, text) }
 	tui.Fill(screen, 1, 0, w-2, 1, t.Panel)
-	put(0, t.OnPanel(t.Accent), "CRPRUNE  /  STATS EXPLORER")
+	put(0, t.OnPanel(t.Accent), "REGTEND  /  STATS EXPLORER")
 	mode := "LOCAL SNAPSHOT"
 	if a.opts.Client != nil {
 		mode = a.opts.Client.Registry
@@ -95,7 +95,7 @@ func (a *app) draw(screen tcell.Screen, now time.Time) {
 		tui.Dialog(screen, t, "SORT BY", lines)
 	case a.panel == "rules":
 		a.drawList(screen, t)
-		tui.Dialog(screen, t, "LOAD RULE FILE", []string{"Path to a crprune JSON rule file:", "> " + a.input + "▏", "", "Enter loads and validates · Esc cancels", "p applies to current repo · P to marked repos or a pattern", a.status})
+		tui.Dialog(screen, t, "LOAD RULE FILE", []string{"Path to a regtend JSON rule file:", "> " + a.input + "▏", "", "Enter loads and validates · Esc cancels", "p applies to current repo · P to marked repos or a pattern", a.status})
 	default:
 		a.drawList(screen, t)
 	}

@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/explore"
-	"github.com/JohanLindvall/crprune/internal/pruner"
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/explore"
+	"github.com/JohanLindvall/regtend/internal/pruner"
+	"github.com/JohanLindvall/regtend/internal/registry"
 	"github.com/urfave/cli/v3"
 )
 
@@ -48,7 +48,7 @@ func TestExploreLocalFileAndStdin(t *testing.T) {
 			return nil, nil
 		})
 		out, err := captureStdout(t, func() error {
-			return cmd.Run(t.Context(), []string{"crprune", "explore", "--sort", "count", "--reverse", "--filter", "app", "--input", path})
+			return cmd.Run(t.Context(), []string{"regtend", "explore", "--sort", "count", "--reverse", "--filter", "app", "--input", path})
 		})
 		if err != nil || out != "" {
 			t.Fatal(out, err)
@@ -89,7 +89,7 @@ func TestExploreWithoutStats(t *testing.T) {
 				return nil, nil
 			})
 			out, err := captureStdout(t, func() error {
-				return cmd.Run(t.Context(), []string{"crprune", "-r", tt.registry, "explore"})
+				return cmd.Run(t.Context(), []string{"regtend", "-r", tt.registry, "explore"})
 			})
 			if err != nil || out != "" || !called {
 				t.Fatalf("out=%q err=%v called=%t", out, err, called)
@@ -115,7 +115,7 @@ func TestExplorePipedSnapshotTakesPrecedenceOverRegistry(t *testing.T) {
 			t.Fatal("connected when a snapshot was supplied")
 			return nil, nil
 		})
-		if err := cmd.Run(t.Context(), []string{"crprune", "-r", "ghcr.io/acme", "explore"}); err != nil || !called {
+		if err := cmd.Run(t.Context(), []string{"regtend", "-r", "ghcr.io/acme", "explore"}); err != nil || !called {
 			t.Fatalf("err=%v called=%t", err, called)
 		}
 	}
@@ -151,7 +151,7 @@ func TestExploreMissingOrInvalidInputDoesNotScan(t *testing.T) {
 				t.Fatal("connected for invalid input")
 				return nil, nil
 			})
-			err := cmd.Run(t.Context(), append([]string{"crprune", "-r", "ghcr.io/acme", "explore"}, tt.args...))
+			err := cmd.Run(t.Context(), append([]string{"regtend", "-r", "ghcr.io/acme", "explore"}, tt.args...))
 			if err == nil || !strings.Contains(err.Error(), "statistics file") {
 				t.Fatal(err)
 			}
@@ -168,7 +168,7 @@ func TestExploreWithoutStatsRequiresRegistry(t *testing.T) {
 			} else {
 				withStdin(t, "")
 			}
-			if err := newCommand().Run(t.Context(), []string{"crprune", "explore"}); !errors.Is(err, errRegistryRequired) {
+			if err := newCommand().Run(t.Context(), []string{"regtend", "explore"}); !errors.Is(err, errRegistryRequired) {
 				t.Fatal(err)
 			}
 		})
@@ -211,7 +211,7 @@ func TestExploreLoadsDefaultAndCustomRuleDirectories(t *testing.T) {
 				}
 				return nil
 			}
-			args := []string{"crprune", "explore"}
+			args := []string{"regtend", "explore"}
 			if dir != "rules" {
 				args = append(args, "--rules-dir", dir)
 			}
@@ -236,7 +236,7 @@ func TestExploreRejectsInvalidExplicitRuleDirectory(t *testing.T) {
 	}
 	for _, dir := range []string{file, file + ".missing", ""} {
 		withStdin(t, "[]")
-		if err := newCommand().Run(t.Context(), []string{"crprune", "explore", "--rules-dir", dir}); err == nil || !strings.Contains(err.Error(), "--rules-dir") {
+		if err := newCommand().Run(t.Context(), []string{"regtend", "explore", "--rules-dir", dir}); err == nil || !strings.Contains(err.Error(), "--rules-dir") {
 			t.Fatal(err)
 		}
 	}
@@ -269,7 +269,7 @@ func TestExploreLiveConnectionIsLazyAndRequestsDeletionScope(t *testing.T) {
 		}
 		return nil
 	}
-	if err := cmd.Run(t.Context(), []string{"crprune", "-r", "ghcr.io/acme", "explore", file, "--keep-younger", "2d"}); err != nil {
+	if err := cmd.Run(t.Context(), []string{"regtend", "-r", "ghcr.io/acme", "explore", file, "--keep-younger", "2d"}); err != nil {
 		t.Fatal(err)
 	}
 	if len(scopes) != 2 || scopes[0] || !scopes[1] {
@@ -291,14 +291,14 @@ func TestExploreRejectsBadInputsBeforeOpeningTerminal(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, args := range [][]string{{"--sort=unknown"}, {"--keep-younger=-1h"}, {file, file}, {"--input", file, file}, {}, {file, "--rules=rules.json"}} {
-		if err := newCommand().Run(t.Context(), append([]string{"crprune", "explore"}, args...)); err == nil {
+		if err := newCommand().Run(t.Context(), append([]string{"regtend", "explore"}, args...)); err == nil {
 			t.Fatal(args)
 		}
 	}
 }
 
 func TestExploreHelpExplainsSelectedScope(t *testing.T) {
-	out, err := captureStdout(t, func() error { return newCommand().Run(t.Context(), []string{"crprune", "explore", "--help"}) })
+	out, err := captureStdout(t, func() error { return newCommand().Run(t.Context(), []string{"regtend", "explore", "--help"}) })
 	if err != nil || !strings.Contains(out, "marked repositories or a wildcard/regex selection") || !strings.Contains(out, "--rules-dir") || !strings.Contains(out, "scans --registry") {
 		t.Fatal(out, err)
 	}
@@ -323,7 +323,7 @@ func TestExploreExitLogging(t *testing.T) {
 			original := runExplorer
 			t.Cleanup(func() { runExplorer = original })
 			runExplorer = func(context.Context, []pruner.RepositoryStats, explore.Options) error { return tt.err }
-			if code := run([]string{"crprune", "explore"}); code != tt.code {
+			if code := run([]string{"regtend", "explore"}); code != tt.code {
 				t.Fatalf("exit status = %d, want %d", code, tt.code)
 			}
 			logs := stderr()

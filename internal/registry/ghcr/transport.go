@@ -15,7 +15,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry"
 )
 
 // maxErrorBody bounds how much of an error response is read.

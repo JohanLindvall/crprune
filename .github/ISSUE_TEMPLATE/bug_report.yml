@@ -5,14 +5,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve crprune. Search existing issues first.
+        Thanks for helping improve Regtend. Search existing issues first.
         Remove tokens and private registry data from examples and logs.
-        For a security vulnerability, use [private reporting](https://github.com/JohanLindvall/crprune/security/advisories/new).
+        For a security vulnerability, use [private reporting](https://github.com/JohanLindvall/regtend/security/advisories/new).
   - type: input
     id: version
     attributes:
-      label: crprune version
-      description: Output of crprune --version.
+      label: Regtend version
+      description: Output of regtend --version.
     validations:
       required: true
   - type: input

@@ -14,7 +14,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry"
 
 	"golang.org/x/sync/singleflight"
 )

@@ -8,7 +8,7 @@ import (
 
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 
-	"github.com/JohanLindvall/crprune/internal/rules"
+	"github.com/JohanLindvall/regtend/internal/rules"
 )
 
 func TestMarkOrphans(t *testing.T) {

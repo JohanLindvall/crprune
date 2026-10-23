@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry"
 )
 
 // Ignoring the second Link header would hide the kept version on page two

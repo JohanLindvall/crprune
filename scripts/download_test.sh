@@ -7,7 +7,7 @@ script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 download="$script_dir/download.sh"
 export MOCK_DIR="$test_dir"
 web=$test_dir/web
-api=$web/api.github.com/repos/JohanLindvall/crprune/releases
+api=$web/api.github.com/repos/JohanLindvall/regtend/releases
 
 # The script runs with only these tools on its PATH: the real utilities it
 # needs, plus mock uname and curl or wget, so a test can take curl away.
@@ -98,12 +98,12 @@ for mocks in curl wget busybox; do cp "$test_dir/none/uname" "$test_dir/$mocks/u
 
 # release TAG PLATFORM...: publish archives whose fake binary names its tag
 # and platform, with a checksum file, as the release job does. $binary names
-# the binary: releases before v0.1.13 were named acrprune.
-binary=crprune
+# the binary: historical releases used crprune or acrprune.
+binary=regtend
 release() {
   tag=$1
   shift
-  assets=$web/github.com/JohanLindvall/crprune/releases/download/$tag
+  assets=$web/github.com/JohanLindvall/regtend/releases/download/$tag
   mkdir -p "$assets"
   for platform do
     stage=$test_dir/stage/$tag-$platform
@@ -114,44 +114,47 @@ release() {
   done
   (cd "$assets" && sha256sum -- *.tar.gz > "checksums-$tag.txt")
 }
-release v0.1.13 linux-amd64 linux-arm64
-release v0.1.12 linux-amd64
+release v0.2.1 linux-amd64 linux-arm64
+release v0.2.0 linux-amd64
 mkdir -p "$api/tags"
 # The API pretty-prints its JSON; the second fixture is compact, to show the
 # parsing does not depend on the layout.
 cat > "$api/latest" <<'JSON'
 {
-  "html_url": "https://github.com/JohanLindvall/crprune/releases/tag/v0.1.13",
-  "tag_name": "v0.1.13",
-  "name": "v0.1.13",
+  "html_url": "https://github.com/JohanLindvall/regtend/releases/tag/v0.2.1",
+  "tag_name": "v0.2.1",
+  "name": "v0.2.1",
   "author": {"login": "JohanLindvall"},
   "assets": [
-    {"name": "checksums-v0.1.13.txt", "uploader": {"login": "github-actions[bot]"}},
-    {"name": "crprune-v0.1.13-linux-amd64.tar.gz"},
-    {"name": "crprune-v0.1.13-linux-arm64.tar.gz"},
+    {"name": "checksums-v0.2.1.txt", "uploader": {"login": "github-actions[bot]"}},
+    {"name": "regtend-v0.2.1-linux-amd64.tar.gz"},
+    {"name": "regtend-v0.2.1-linux-arm64.tar.gz"},
     {"name": "download.sh"}
   ]
 }
 JSON
-cp "$api/latest" "$api/tags/v0.1.13"
-printf '%s' '{"tag_name":"v0.1.12","name":"v0.1.12","assets":[{"name":"checksums-v0.1.12.txt"},{"name":"crprune-v0.1.12-linux-amd64.tar.gz"}]}' > "$api/tags/v0.1.12"
+cp "$api/latest" "$api/tags/v0.2.1"
+printf '%s' '{"tag_name":"v0.2.0","name":"v0.2.0","assets":[{"name":"checksums-v0.2.0.txt"},{"name":"regtend-v0.2.0-linux-amd64.tar.gz"}]}' > "$api/tags/v0.2.0"
 binary=acrprune
 release v0.1.10 linux-amd64 linux-arm64
 binary=crprune
+release v0.1.23 linux-amd64 linux-arm64
+binary=regtend
 printf '%s' '{"tag_name":"v0.1.10","assets":[{"name":"acrprune-v0.1.10-linux-amd64.tar.gz"},{"name":"acrprune-v0.1.10-linux-arm64.tar.gz"},{"name":"checksums-v0.1.10.txt"}]}' > "$api/tags/v0.1.10"
+printf '%s' '{"tag_name":"v0.1.23","assets":[{"name":"crprune-v0.1.23-linux-amd64.tar.gz"},{"name":"crprune-v0.1.23-linux-arm64.tar.gz"},{"name":"checksums-v0.1.23.txt"}]}' > "$api/tags/v0.1.23"
 # A release whose checksum file does not list its archive.
-release v0.1.11 linux-amd64
-: > "$web/github.com/JohanLindvall/crprune/releases/download/v0.1.11/checksums-v0.1.11.txt"
-printf '%s' '{"tag_name":"v0.1.11","assets":[{"name":"checksums-v0.1.11.txt"},{"name":"crprune-v0.1.11-linux-amd64.tar.gz"}]}' > "$api/tags/v0.1.11"
+release v0.2.3 linux-amd64
+: > "$web/github.com/JohanLindvall/regtend/releases/download/v0.2.3/checksums-v0.2.3.txt"
+printf '%s' '{"tag_name":"v0.2.3","assets":[{"name":"checksums-v0.2.3.txt"},{"name":"regtend-v0.2.3-linux-amd64.tar.gz"}]}' > "$api/tags/v0.2.3"
 # A valid, checksummed archive whose binary cannot execute successfully.
-release v0.1.14 linux-amd64
-printf '#!/bin/sh\nexit 1\n' > "$stage/crprune"
-tar -czf "$assets/crprune-v0.1.14-linux-amd64.tar.gz" -C "$stage" crprune
-(cd "$assets" && sha256sum -- *.tar.gz > checksums-v0.1.14.txt)
-printf '%s' '{"tag_name":"v0.1.14","assets":[{"name":"checksums-v0.1.14.txt"},{"name":"crprune-v0.1.14-linux-amd64.tar.gz"}]}' > "$api/tags/v0.1.14"
+release v0.2.2 linux-amd64
+printf '#!/bin/sh\nexit 1\n' > "$stage/regtend"
+tar -czf "$assets/regtend-v0.2.2-linux-amd64.tar.gz" -C "$stage" regtend
+(cd "$assets" && sha256sum -- *.tar.gz > checksums-v0.2.2.txt)
+printf '%s' '{"tag_name":"v0.2.2","assets":[{"name":"checksums-v0.2.2.txt"},{"name":"regtend-v0.2.2-linux-amd64.tar.gz"}]}' > "$api/tags/v0.2.2"
 
 with_curl="$test_dir/curl:$test_dir/tools"
-unset GH_TOKEN GITHUB_TOKEN CRPRUNE_REPO
+unset GH_TOKEN GITHUB_TOKEN REGTEND_REPO
 
 # passes PATH COMMAND...: the download must succeed; stdout is in
 # $test_dir/output, the requests in $test_dir/calls.
@@ -181,15 +184,15 @@ fails() {
   fi
 }
 
-# installed DIR WANT: DIR/crprune runs and prints WANT, and nothing else was
+# installed DIR WANT: DIR/regtend runs and prints WANT, and nothing else was
 # left in DIR.
 installed() {
-  if [ "$("$1/crprune" --version)" != "$2" ]; then
-    echo "$1/crprune: got '$("$1/crprune" --version)', want '$2'" >&2
+  if [ "$("$1/regtend" --version)" != "$2" ]; then
+    echo "$1/regtend: got '$("$1/regtend" --version)', want '$2'" >&2
     exit 1
   fi
-  if [ "$(ls -A "$1")" != crprune ]; then
-    echo "$1 holds more than crprune: $(ls -A "$1")" >&2
+  if [ "$(ls -A "$1")" != regtend ]; then
+    echo "$1 holds more than regtend: $(ls -A "$1")" >&2
     exit 1
   fi
 }
@@ -205,16 +208,16 @@ untouched() {
 # The latest release, into a directory that does not exist yet. stdout is the
 # installed path; the API request carries no credentials without a token.
 passes "$with_curl" sh "$download" "$test_dir/out/bin"
-installed "$test_dir/out/bin" 'crprune version v0.1.13 linux-amd64'
-[ "$(cat "$test_dir/output")" = "$test_dir/out/bin/crprune" ]
-grep -qx 'curl https://api.github.com/repos/JohanLindvall/crprune/releases/latest ' "$test_dir/calls"
-grep -qx 'curl https://github.com/JohanLindvall/crprune/releases/download/v0.1.13/crprune-v0.1.13-linux-amd64.tar.gz ' "$test_dir/calls"
-grep -qx 'curl https://github.com/JohanLindvall/crprune/releases/download/v0.1.13/checksums-v0.1.13.txt ' "$test_dir/calls"
+installed "$test_dir/out/bin" 'regtend version v0.2.1 linux-amd64'
+[ "$(cat "$test_dir/output")" = "$test_dir/out/bin/regtend" ]
+grep -qx 'curl https://api.github.com/repos/JohanLindvall/regtend/releases/latest ' "$test_dir/calls"
+grep -qx 'curl https://github.com/JohanLindvall/regtend/releases/download/v0.2.1/regtend-v0.2.1-linux-amd64.tar.gz ' "$test_dir/calls"
+grep -qx 'curl https://github.com/JohanLindvall/regtend/releases/download/v0.2.1/checksums-v0.2.1.txt ' "$test_dir/calls"
 
 # Piped into sh, as the README's one-liner does. A download cut short does
 # nothing: everything runs from the script's last line.
 passes "$with_curl" sh -s -- "$test_dir/piped" < "$download"
-installed "$test_dir/piped" 'crprune version v0.1.13 linux-amd64'
+installed "$test_dir/piped" 'regtend version v0.2.1 linux-amd64'
 sed '$d' "$download" > "$test_dir/cut.sh"
 passes "$with_curl" sh -s -- "$test_dir/cut" < "$test_dir/cut.sh"
 untouched 'download cut before its last line'
@@ -223,33 +226,38 @@ fails 'download cut inside main' "$with_curl" sh -s -- "$test_dir/cut" < "$test_
 untouched 'download cut inside main'
 
 # A given version, with or without its v, replaces the installed binary.
-passes "$with_curl" sh "$download" -v 0.1.12 "$test_dir/out/bin"
-installed "$test_dir/out/bin" 'crprune version v0.1.12 linux-amd64'
-passes "$with_curl" sh "$download" --version v0.1.13 -- "$test_dir/out/bin"
-installed "$test_dir/out/bin" 'crprune version v0.1.13 linux-amd64'
+passes "$with_curl" sh "$download" -v 0.2.0 "$test_dir/out/bin"
+installed "$test_dir/out/bin" 'regtend version v0.2.0 linux-amd64'
+passes "$with_curl" sh "$download" --version v0.2.1 -- "$test_dir/out/bin"
+installed "$test_dir/out/bin" 'regtend version v0.2.1 linux-amd64'
 passes "$with_curl" sh "$download" -v latest "$test_dir/out/bin"
 grep -q '/releases/latest ' "$test_dir/calls"
 
-# A release from before the rename installs under its own name, acrprune,
-# next to (not over) crprune.
+# Releases from before the renames install under their original names,
+# leaving the current regtend installation in place.
+passes "$with_curl" sh "$download" -v v0.1.23 "$test_dir/out/bin"
+[ "$(cat "$test_dir/output")" = "$test_dir/out/bin/crprune" ]
+[ "$("$test_dir/out/bin/crprune" --version)" = 'crprune version v0.1.23 linux-amd64' ]
+[ "$("$test_dir/out/bin/regtend" --version)" = 'regtend version v0.2.1 linux-amd64' ]
+rm "$test_dir/out/bin/crprune"
 passes "$with_curl" sh "$download" -v v0.1.10 "$test_dir/out/bin"
 [ "$(cat "$test_dir/output")" = "$test_dir/out/bin/acrprune" ]
 [ "$("$test_dir/out/bin/acrprune" --version)" = 'acrprune version v0.1.10 linux-amd64' ]
-[ "$("$test_dir/out/bin/crprune" --version)" = 'crprune version v0.1.13 linux-amd64' ]
+[ "$("$test_dir/out/bin/regtend" --version)" = 'regtend version v0.2.1 linux-amd64' ]
 rm "$test_dir/out/bin/acrprune"
 
 # The default directory is the current one, and arm64 machines get arm64.
 mkdir "$test_dir/cwd"
 (cd "$test_dir/cwd" && passes "$with_curl" env MOCK_ARCH=aarch64 sh "$download")
-installed "$test_dir/cwd" 'crprune version v0.1.13 linux-arm64'
+installed "$test_dir/cwd" 'regtend version v0.2.1 linux-arm64'
 passes "$with_curl" sh "$download" "$test_dir/path with spaces"
-installed "$test_dir/path with spaces" 'crprune version v0.1.13 linux-amd64'
+installed "$test_dir/path with spaces" 'regtend version v0.2.1 linux-amd64'
 (cd "$test_dir/cwd" && passes "$with_curl" sh "$download" -- -bin)
-installed "$test_dir/cwd/-bin" 'crprune version v0.1.13 linux-amd64'
+installed "$test_dir/cwd/-bin" 'regtend version v0.2.1 linux-amd64'
 
 # A token authenticates the API request only, never the downloads.
 passes "$with_curl" env GH_TOKEN=secret sh "$download" "$test_dir/token"
-grep -qx 'curl https://api.github.com/repos/JohanLindvall/crprune/releases/latest Authorization: Bearer secret' "$test_dir/calls"
+grep -qx 'curl https://api.github.com/repos/JohanLindvall/regtend/releases/latest Authorization: Bearer secret' "$test_dir/calls"
 if grep -v api.github.com "$test_dir/calls" | grep -q secret; then
   echo 'the token was sent to a download host' >&2
   exit 1
@@ -259,8 +267,8 @@ grep -q 'Authorization: Bearer other' "$test_dir/calls"
 
 # wget works when curl is missing.
 passes "$test_dir/wget:$test_dir/tools" env GH_TOKEN=secret sh "$download" "$test_dir/wget-out"
-installed "$test_dir/wget-out" 'crprune version v0.1.13 linux-amd64'
-grep -qx 'wget https://api.github.com/repos/JohanLindvall/crprune/releases/latest Authorization: Bearer secret' "$test_dir/calls"
+installed "$test_dir/wget-out" 'regtend version v0.2.1 linux-amd64'
+grep -qx 'wget https://api.github.com/repos/JohanLindvall/regtend/releases/latest Authorization: Bearer secret' "$test_dir/calls"
 fails 'no downloader' "$test_dir/none:$test_dir/tools" sh "$download" "$test_dir/none-out"
 grep -q 'curl or GNU Wget is required' "$test_dir/stderr"
 fails 'BusyBox wget' "$test_dir/busybox:$test_dir/tools" sh "$download" "$test_dir/none-out"
@@ -273,31 +281,36 @@ fi
 
 # Failures install nothing and leave an existing binary alone.
 mkdir "$test_dir/keep"
-printf '#!/bin/sh\necho old\n' > "$test_dir/keep/crprune"
-chmod +x "$test_dir/keep/crprune"
-fails 'binary that cannot run' "$with_curl" sh "$download" -v v0.1.14 "$test_dir/keep"
+printf '#!/bin/sh\necho old\n' > "$test_dir/keep/regtend"
+chmod +x "$test_dir/keep/regtend"
+fails 'binary that cannot run' "$with_curl" sh "$download" -v v0.2.2 "$test_dir/keep"
 installed "$test_dir/keep" old
-mkdir -p "$test_dir/directory/crprune"
+mkdir -p "$test_dir/directory/regtend"
 fails 'directory at target path' "$with_curl" sh "$download" "$test_dir/directory"
-[ -z "$(ls -A "$test_dir/directory/crprune")" ]
+[ -z "$(ls -A "$test_dir/directory/regtend")" ]
 fails 'corrupt archive' "$with_curl" env CORRUPT=1 sh "$download" "$test_dir/keep"
-grep -q 'checksum mismatch for crprune-v0.1.13-linux-amd64.tar.gz' "$test_dir/stderr"
+grep -q 'checksum mismatch for regtend-v0.2.1-linux-amd64.tar.gz' "$test_dir/stderr"
 installed "$test_dir/keep" old
-fails 'unlisted archive' "$with_curl" sh "$download" -v v0.1.11 "$test_dir/keep"
-grep -q 'checksums-v0.1.11.txt does not list crprune-v0.1.11-linux-amd64.tar.gz' "$test_dir/stderr"
+fails 'unlisted archive' "$with_curl" sh "$download" -v v0.2.3 "$test_dir/keep"
+grep -q 'checksums-v0.2.3.txt does not list regtend-v0.2.3-linux-amd64.tar.gz' "$test_dir/stderr"
 installed "$test_dir/keep" old
 fails 'unknown release' "$with_curl" sh "$download" -v v9.9.9 "$test_dir/keep"
-grep -q 'cannot read release v9.9.9 of JohanLindvall/crprune' "$test_dir/stderr"
+grep -q 'cannot read release v9.9.9 of JohanLindvall/regtend' "$test_dir/stderr"
 installed "$test_dir/keep" old
 fails 'no build for the platform' "$with_curl" env MOCK_OS=Darwin MOCK_ARCH=arm64 sh "$download" "$test_dir/keep"
-grep -q 'release v0.1.13 has no build for darwin/arm64 (available: linux/amd64 linux/arm64)' "$test_dir/stderr"
+grep -q 'release v0.2.1 has no build for darwin/arm64 (available: linux/amd64 linux/arm64)' "$test_dir/stderr"
 installed "$test_dir/keep" old
 if grep -q 'releases/download' "$test_dir/calls"; then
   echo 'an archive was downloaded for a platform without a build' >&2
   exit 1
 fi
+for legacy_version in v0.1.23 v0.1.10; do
+  fails 'no legacy build for the platform' "$with_curl" env MOCK_OS=Darwin MOCK_ARCH=arm64 sh "$download" -v "$legacy_version" "$test_dir/keep"
+  grep -q "release $legacy_version has no build for darwin/arm64 (available: linux/amd64 linux/arm64)" "$test_dir/stderr"
+  installed "$test_dir/keep" old
+done
 
-for arguments in '-x' '--version' 'one two' 'one -v v0.1.13'; do
+for arguments in '-x' '--version' 'one two' 'one -v v0.2.1'; do
   # shellcheck disable=SC2086 # split the arguments on purpose
   fails "arguments $arguments" "$with_curl" sh "$download" $arguments
   if [ "$status" -ne 2 ] || [ -s "$test_dir/calls" ]; then

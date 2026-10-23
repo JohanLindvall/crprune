@@ -24,8 +24,8 @@ import (
 
 	godigest "github.com/opencontainers/go-digest"
 
-	"github.com/JohanLindvall/crprune/internal/imageref"
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/imageref"
+	"github.com/JohanLindvall/regtend/internal/registry"
 )
 
 var (
@@ -44,8 +44,8 @@ const (
 	maxPageSize = 100
 	// defaultUsername accompanies the token at the registry's token
 	// endpoint, which authenticates by the token alone.
-	defaultUsername = "crprune"
-	userAgent       = "crprune"
+	defaultUsername = "regtend"
+	userAgent       = "regtend"
 	apiVersion      = "2022-11-28"
 )
 

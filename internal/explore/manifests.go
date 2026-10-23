@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry"
 	"github.com/dustin/go-humanize"
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 )

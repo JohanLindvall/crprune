@@ -18,7 +18,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/containers/azcontainerregistry"
 	"github.com/opencontainers/go-digest"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry"
 )
 
 type responseTransport func(*http.Request) (*http.Response, error)

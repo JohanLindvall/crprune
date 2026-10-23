@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/cancellation"
-	"github.com/JohanLindvall/crprune/internal/imageref"
+	"github.com/JohanLindvall/regtend/internal/cancellation"
+	"github.com/JohanLindvall/regtend/internal/imageref"
 )
 
 // relockTimeout bounds how long restoring the locks of a failed deletion may

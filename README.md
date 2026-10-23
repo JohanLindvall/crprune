@@ -1,24 +1,24 @@
-# crprune
+# Regtend
 
 **Clean up Azure Container Registry and GitHub Container Registry with rules you can review.**
 
-[![CI](https://github.com/JohanLindvall/crprune/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/JohanLindvall/crprune/actions/workflows/ci.yml?query=branch%3Amain)
-[![Release](https://img.shields.io/github/v/release/JohanLindvall/crprune?sort=semver)](https://github.com/JohanLindvall/crprune/releases/latest)
-[![License: MIT](https://img.shields.io/github/license/JohanLindvall/crprune)](LICENSE)
+[![CI](https://github.com/JohanLindvall/regtend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/JohanLindvall/regtend/actions/workflows/ci.yml?query=branch%3Amain)
+[![Release](https://img.shields.io/github/v/release/JohanLindvall/regtend?sort=semver)](https://github.com/JohanLindvall/regtend/releases/latest)
+[![License: MIT](https://img.shields.io/github/license/JohanLindvall/regtend)](LICENSE)
 
 Old pull-request builds, untagged images, and abandoned repositories accumulate.
-crprune helps you see what is there, define a JSON retention policy, and preview
+Regtend helps you see what is there, define a JSON retention policy, and preview
 what it would remove. It keeps the dependencies and signatures of retained images
 together, and **`prune` is a dry run by default**.
 
 [Get started](#quick-start) · [Try the demo](#try-it-without-a-registry) · [Reference](docs/reference.md) · [Contribute](CONTRIBUTING.md)
 
-![crprune's statistics explorer showing repository sizes and manifest counts from synthetic sample data](docs/assets/explorer.svg)
+![Regtend's statistics explorer showing repository sizes and manifest counts from synthetic sample data](docs/assets/explorer.svg)
 
 *Explore repository sizes, search and sort, then inspect the details. This preview
 uses synthetic data; you can try it without cloud credentials.*
 
-## Why crprune?
+## Why Regtend?
 
 - **One CLI for ACR and GHCR.** Use an Azure registry name or `ghcr.io/<owner>`.
 - **Retention rules you can version.** Match repositories, tags, age, newest N
@@ -37,21 +37,21 @@ uses synthetic data; you can try it without cloud credentials.*
 Prebuilt releases support **Linux amd64 and arm64**:
 
 ```sh
-curl -fsSL https://github.com/JohanLindvall/crprune/releases/latest/download/download.sh | sh -s -- ~/.local/bin
+curl -fsSL https://github.com/JohanLindvall/regtend/releases/latest/download/download.sh | sh -s -- ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
-crprune --version
+regtend --version
 ```
 
 The [installer](scripts/download.sh) verifies SHA-256 checksums and replaces an
 existing installation only after the new binary runs successfully. You can also
-download archives from [Releases](https://github.com/JohanLindvall/crprune/releases).
+download archives from [Releases](https://github.com/JohanLindvall/regtend/releases).
 See the [installation reference](docs/reference.md#install) for pinned versions,
 dependencies, and authenticated downloads.
 
 With **Go 1.27.3 or later**:
 
 ```sh
-go install github.com/JohanLindvall/crprune/cmd/crprune@latest
+go install github.com/JohanLindvall/regtend/cmd/regtend@latest
 ```
 
 Ensure Go's binary directory (`$(go env GOPATH)/bin`, or your `GOBIN`) is on `PATH`.
@@ -61,13 +61,13 @@ Ensure Go's binary directory (`$(go env GOPATH)/bin`, or your `GOBIN`) is on `PA
 Download the synthetic sample and open the explorer in an interactive terminal:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/JohanLindvall/crprune/main/examples/sample-stats.json -o sample-stats.json
-crprune explore sample-stats.json
+curl -fsSL https://raw.githubusercontent.com/JohanLindvall/regtend/main/examples/sample-stats.json -o sample-stats.json
+regtend explore sample-stats.json
 ```
 
 Use **↑/↓** to move, **/** to search, **s** to sort, **Enter** for details,
 **?** for help, and **q** to quit. No credentials or registry connection are needed.
-For plain output, run `crprune top sample-stats.json -k 5`.
+For plain output, run `regtend top sample-stats.json -k 5`.
 From a source checkout, `make demo` opens the same sample.
 
 ## Quick start
@@ -110,13 +110,13 @@ JSON
 **3. Preview and review.** This lists planned deletions without changing the registry:
 
 ```sh
-crprune -r "$REGISTRY" --progress=plain prune --in rules.json
+regtend -r "$REGISTRY" --progress=plain prune --in rules.json
 ```
 
 **4. Apply when the preview matches your intent:**
 
 ```sh
-crprune -r "$REGISTRY" prune --in rules.json --dry-run=false
+regtend -r "$REGISTRY" prune --in rules.json --dry-run=false
 ```
 
 Deleting a manifest removes **all of its tags**. A tag that the policy keeps also
@@ -135,10 +135,10 @@ policy, Kubernetes protection, and troubleshooting.
 | <a id="generate"></a>[`generate`](docs/reference.md#generate) | Generate a policy keeping only images in a supplied inventory |
 
 ```sh
-crprune -r myregistry stats --out stats.json
-crprune top stats.json -k 10
-crprune -r myregistry explore
-crprune prune --help
+regtend -r myregistry stats --out stats.json
+regtend top stats.json -k 10
+regtend -r myregistry explore
+regtend prune --help
 ```
 
 `top` and file-based `explore` work offline. `generate` also works offline and uses
@@ -176,7 +176,7 @@ not guaranteed reclaimed storage.
 | Start from an existing policy | [Six included rule examples](docs/reference.md#included-rule-examples) |
 | Protect Kubernetes workloads | [Image inventory](docs/reference.md#kubernetes-image-inventory) |
 | Understand deletion protections and limits | [Protected manifests](docs/reference.md#protected-manifests) and [behaviour notes](docs/reference.md#behaviour-notes) |
-| Build, test, or change crprune | [Contributor guide and package map](CONTRIBUTING.md) |
+| Build, test, or change Regtend | [Contributor guide and package map](CONTRIBUTING.md) |
 
 <a id="package-layout"></a>
 <a id="development-and-validation"></a>
@@ -184,23 +184,23 @@ not guaranteed reclaimed storage.
 ## Contributing and support
 
 Questions, bug reports, documentation fixes, and retention-policy examples are
-welcome. [Open an issue](https://github.com/JohanLindvall/crprune/issues/new/choose)
+welcome. [Open an issue](https://github.com/JohanLindvall/regtend/issues/new/choose)
 or read [CONTRIBUTING.md](CONTRIBUTING.md) to get a local checkout running. Tests
 use in-memory registries and HTTP fixtures; no cloud account is required.
 
-Please follow the [Code of Conduct](CODE_OF_CONDUCT.md). If crprune is useful to
-you, [star the repository](https://github.com/JohanLindvall/crprune) to help others
+Please follow the [Code of Conduct](CODE_OF_CONDUCT.md). If Regtend is useful to
+you, [star the repository](https://github.com/JohanLindvall/regtend) to help others
 discover it.
 
 ## Similar work
 
 [Azure/acr-cli](https://github.com/Azure/acr-cli) provides Azure registry tooling.
-crprune focuses on declarative retention policies, dependency-aware cleanup, and
+Regtend focuses on declarative retention policies, dependency-aware cleanup, and
 support for both ACR and GHCR.
 
 ## Security
 
-Report vulnerabilities privately through [GitHub security advisories](https://github.com/JohanLindvall/crprune/security/advisories/new).
+Report vulnerabilities privately through [GitHub security advisories](https://github.com/JohanLindvall/regtend/security/advisories/new).
 See [SECURITY.md](SECURITY.md) for scope and supported versions.
 
 ## License

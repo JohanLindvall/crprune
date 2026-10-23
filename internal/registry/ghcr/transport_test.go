@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/JohanLindvall/crprune/internal/registry"
+	"github.com/JohanLindvall/regtend/internal/registry"
 )
 
 func TestRetriesTruncatedSuccessBodies(t *testing.T) {

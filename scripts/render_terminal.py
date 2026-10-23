@@ -20,13 +20,13 @@ def render(snapshot):
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
         f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
-        "<title id=\"title\">crprune statistics explorer</title>",
+        "<title id=\"title\">Regtend statistics explorer</title>",
         "<desc id=\"desc\">Actual terminal UI rendered with synthetic sample data. "
         "Repository sizes, manifest counts, and the selected repository's details.</desc>",
         f'<rect width="{width}" height="{height}" rx="12" fill="#111923"/>',
         '<g fill="#98a9bc" font-family="ui-monospace,DejaVu Sans Mono,monospace" '
         'font-size="14">',
-        '<text x="20" y="28">crprune explore examples/sample-stats.json</text>',
+        '<text x="20" y="28">regtend explore examples/sample-stats.json</text>',
         "</g>",
         '<g font-family="ui-monospace,DejaVu Sans Mono,monospace" font-size="16">',
     ]

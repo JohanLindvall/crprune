@@ -9,7 +9,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/JohanLindvall/crprune/internal/imageref"
+	"github.com/JohanLindvall/regtend/internal/imageref"
 )
 
 // Kind identifies the registry service an Address points at.
@@ -39,7 +39,7 @@ const GHCRHost = "ghcr.io"
 // ACRSuffixesEnv names the environment variable listing further login server
 // suffixes to accept as ACR, comma-separated (for example .azurecr.de), for
 // clouds whose suffix ParseAddress does not know.
-const ACRSuffixesEnv = "CRPRUNE_ACR_SUFFIXES"
+const ACRSuffixesEnv = "REGTEND_ACR_SUFFIXES"
 
 // acrSuffixes are the login server suffixes of Azure Container Registry in the
 // public cloud, Azure China and Azure Government.
@@ -65,7 +65,7 @@ type Address struct {
 // GHCR namespace (ghcr.io/myorg), optionally prefixed with https://.
 //
 // Anything else is refused rather than taken for an ACR login server: the
-// Azure credentials crprune authenticates with would be sent to it.
+// Azure credentials regtend authenticates with would be sent to it.
 func ParseAddress(s string) (Address, error) {
 	rest := s
 	if len(rest) >= len("https://") && strings.EqualFold(rest[:len("https://")], "https://") {
